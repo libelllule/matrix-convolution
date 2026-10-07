@@ -86,8 +86,8 @@ int read_input_file(const char* path, MatrixABC* matrix_abc,
   return 0;
 }
 
-int64_t calculate_pixel(const MatrixABC* matrix_abc, const MatrixD* matrix_d,
-                        uint32_t y, uint32_t x, int c, int cy, int cx) {
+int64_t calculate_element(const MatrixABC* matrix_abc, const MatrixD* matrix_d,
+                          uint32_t y, uint32_t x, int c, int cy, int cx) {
   int64_t sum = 0;
   for (uint16_t ky = 0; ky < matrix_d->DH; ky++) {
     for (uint16_t kx = 0; kx < matrix_d->DW; kx++) {
@@ -117,7 +117,7 @@ int calculate_result(const MatrixABC* matrix_abc, const MatrixD* matrix_d,
   for (uint32_t y = 0; y < matrix_abc->H; y++) {
     for (uint32_t x = 0; x < matrix_abc->W; x++) {
       for (int c = 0; c < MATRIX_NUM; c++) {
-        int64_t sum = calculate_pixel(matrix_abc, matrix_d, y, x, c, cy, cx);
+        int64_t sum = calculate_element(matrix_abc, matrix_d, y, x, c, cy, cx);
         if (sum > MAX_VAL) {
           sum = sum % MOD_POS;
         } else if (sum < 0) {
