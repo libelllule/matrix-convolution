@@ -1,0 +1,5 @@
+gen
+solution
+*.in
+*.out
+.DS_Store
